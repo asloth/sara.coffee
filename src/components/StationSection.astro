@@ -36,6 +36,9 @@ const { station, index, place = 'right' } = Astro.props;
     pointer-events: none;
     /* the Work posters walk sideways past the edges; never let them widen the page */
     overflow-x: clip;
+    /* the browser's own #fragment jump lands on the station (the section's middle), not its top:
+       on phones it can come after the journey script has already taken the visitor there */
+    scroll-margin-top: calc((var(--len) - 1) * -50vh);
   }
 
   /* wide screens: the content is pinned to the viewport for as long as it shows, so it never slides

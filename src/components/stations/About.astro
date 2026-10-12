@@ -8,9 +8,32 @@ const site = (await getEntry('site', 'main'))!.data;
 <article class="poster" data-placeholder={site.placeholder || undefined}>
   <p class="kicker">About <span aria-hidden="true">· 紹介</span></p>
   <h2 id="about-title">Hi, I'm {site.name}.</h2>
-  {site.bio.map((p) => <p>{p}</p>)}
+  <p>{site.bio[0]}</p>
+  {
+    site.bio.length > 1 && (
+      <>
+        {/* phones: the rest folds away so she stays visible on the bench below the poster */}
+        <div class="more" id="about-more">
+          {site.bio.slice(1).map((p) => <p>{p}</p>)}
+        </div>
+        <button class="more-toggle" type="button" aria-expanded="false" aria-controls="about-more" data-more>
+          Read more
+        </button>
+      </>
+    )
+  }
   {site.location && <p class="where">Based in {site.location}</p>}
 </article>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-more]').forEach((button) =>
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(open));
+      button.textContent = open ? 'Read less' : 'Read more';
+    }),
+  );
+</script>
 
 <style>
   .poster {
@@ -43,6 +66,32 @@ const site = (await getEntry('site', 'main'))!.data;
 
   p {
     margin: 0 0 0.8rem;
+  }
+
+  .more-toggle {
+    display: none;
+  }
+
+  /* phones, with JS: fold the bio after its first paragraph (without JS it all shows) */
+  @media (max-width: 1023px) {
+    :global(.js) .more-toggle {
+      display: inline-block;
+      margin: 0;
+      padding: 0.35rem 0;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #8a4b25;
+      background: none;
+      border: 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    :global(.js) .more:has(+ [aria-expanded='false']) {
+      display: none;
+    }
   }
 
   .where {
