@@ -1,0 +1,87 @@
+@import './fonts.css';
+
+:root {
+  /* signage palette: station-sign navy and paper, Unit-01 purple and green, sunset orange */
+  --ink: #0e1424;
+  --ink-2: #1b2540;
+  --paper: #f4eedf;
+  --paper-ink: #1c1a17;
+  --muted: #8d97ad;
+  --line: #6b4fbb;
+  --go: #8be03c;
+  --signal: #ff6a2a;
+  --led: #ffb347;
+
+  --font-sign: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
+  /* VT323 carries the Latin, DotGothic16 the kanji (fonts.css gives it no Latin range) */
+  --font-led: 'VT323', 'DotGothic16', ui-monospace, monospace;
+
+  /* a 16:9 scene panel that always covers the viewport */
+  --P: max(100vw, calc(100vh * 16 / 9));
+  --Ph: calc(var(--P) * 9 / 16);
+
+  --nav-h: 3.5rem;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sign);
+  font-size: 100%;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--go);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--paper);
+  color: var(--paper-ink);
+  font-weight: 700;
+  border-radius: 4px;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}

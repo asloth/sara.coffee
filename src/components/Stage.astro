@@ -1,0 +1,269 @@
+---
+// The painted world behind the content: one scene per station, stacked in place. The journey
+// script shows one at a time (cutting behind the gangway door) and keeps the passenger seated in it.
+import { STATIONS, type Station } from '../lib/stations';
+import Passenger from './Passenger.astro';
+
+const art = (name: string, w: 960 | 1920 | 2752, ext: 'avif' | 'webp') => `/art/${name}-${w}.${ext}`;
+const srcset = (name: string, ext: 'avif' | 'webp') =>
+  `${art(name, 960, ext)} 960w, ${art(name, 1920, ext)} 1920w, ${art(name, 2752, ext)} 2752w`;
+
+// where the window view sits behind each kind of painting (fractions of the panel height)
+const viewBand = (s: Station) =>
+  s.scene.startsWith('platform') ? { top: 0.08, h: 0.62 } : { top: 0.17, h: 0.5 };
+---
+
+<div class="stage" data-stage>
+  <div class="scenes" aria-hidden="true">
+    {
+      STATIONS.map((s, i) => {
+        const band = viewBand(s);
+        return (
+          <div
+            class="scene"
+            data-scene={s.id}
+            data-time={s.time}
+            style={`--view-top:${band.top};--view-h:${band.h};--focus:${s.seat.x + 0.08}`}
+          >
+            <div class="track">
+              {[s.scene, s.sceneContinued].filter(Boolean).map((name, k) => (
+                <div class:list={['panel', { mirrored: k === 1 }]}>
+                  <div class="view">
+                    {/* only the first station's view is set up front; the journey script sets the
+                        others as the train nears them (data-view), at a width that suits the screen */}
+                    <div
+                      class="view-far"
+                      data-view={`view-${s.time}`}
+                      style={i === 0 ? `--img:image-set(url(${art(`view-${s.time}`, 1920, 'avif')}) type('image/avif'), url(${art(`view-${s.time}`, 1920, 'webp')}) type('image/webp'));--img-sm:image-set(url(${art(`view-${s.time}`, 960, 'avif')}) type('image/avif'), url(${art(`view-${s.time}`, 960, 'webp')}) type('image/webp'))` : undefined}
+                    />
+                    <div class="view-near" />
+                  </div>
+                  {/* later scenes keep their sources in data-* until the train nears them: hidden
+                      scenes sit in the viewport, so native lazy-loading would fetch them all at once */}
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset={i === 0 ? srcset(name!, 'avif') : undefined}
+                      data-srcset={i === 0 ? undefined : srcset(name!, 'avif')}
+                      sizes="(min-aspect-ratio: 16/9) 100vw, 178vh"
+                    />
+                    <img
+                      src={i === 0 ? art(name!, 1920, 'webp') : undefined}
+                      srcset={i === 0 ? srcset(name!, 'webp') : undefined}
+                      data-src={i === 0 ? undefined : art(name!, 1920, 'webp')}
+                      data-srcset={i === 0 ? undefined : srcset(name!, 'webp')}
+                      sizes="(min-aspect-ratio: 16/9) 100vw, 178vh"
+                      alt=""
+                      width="1920"
+                      height="1072"
+                      fetchpriority={i === 0 ? 'high' : 'auto'}
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <Passenger />
+
+  <div class="wash" aria-hidden="true"></div>
+
+  <div class="door" aria-hidden="true">
+    <div class="door-leaf"><div class="glass"></div></div>
+  </div>
+</div>
+
+<style>
+  .stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100lvh;
+    overflow: hidden;
+    background: #0b0f1c;
+    contain: strict;
+    /* passed to the window views: the strip art is 2768 x 1344 */
+    --strip-aspect: 2.06;
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    visibility: hidden;
+  }
+
+  .scene[data-active],
+  :global(.no-js) .scene:first-child {
+    visibility: visible;
+  }
+
+  /* reduced motion cross-fades the neighbours instead of cutting behind a door */
+  .scene[data-fade] {
+    visibility: visible;
+  }
+
+  .track {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    /* first panel centred; --pan (0..1) walks the camera along a two-panel car */
+    transform: translate(calc(var(--P) / -2 - var(--pan, 0) * var(--P)), -50%);
+    will-change: transform;
+  }
+
+  .panel {
+    position: relative;
+    flex: none;
+    width: var(--P);
+    height: var(--Ph);
+    overflow: hidden;
+  }
+
+  /* overlap the two halves of the Work car by a hair so no seam of background shows between them */
+  .panel + .panel {
+    margin-left: -2px;
+  }
+
+  .panel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* the paintings are 2752 x 1536 (1.79:1); the panel is 16:9, so trim 0.4% off each side */
+    object-fit: cover;
+  }
+
+  .panel.mirrored img {
+    transform: scaleX(-1);
+  }
+
+  /* the city outside: two tiling strips sliding past at different speeds */
+  .view {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--view-top) * 100%);
+    height: calc(var(--view-h) * 100%);
+    overflow: hidden;
+    --strip: calc(var(--Ph) * var(--view-h) * var(--strip-aspect));
+  }
+
+  .view-far,
+  .view-near {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(var(--P) + var(--strip) * 2);
+    background-repeat: repeat-x;
+    background-size: var(--strip) 100%;
+    will-change: transform;
+    animation: pass var(--speed) linear infinite;
+  }
+
+  .view-far {
+    background-image: var(--img);
+    --speed: 38s;
+  }
+
+  @media (max-width: 1023px) {
+    .view-far {
+      background-image: var(--img-sm, var(--img));
+    }
+  }
+
+  .view-near {
+    background-image: image-set(url('/art/poles-960.avif') type('image/avif'), url('/art/poles-960.webp') type('image/webp'));
+    --speed: 9s;
+    opacity: 0.92;
+  }
+
+  [data-time='night'] .view-near {
+    filter: brightness(0.35) saturate(0.6);
+  }
+
+  [data-time='sunset'] .view-near {
+    filter: brightness(0.75) sepia(0.3);
+  }
+
+  @keyframes pass {
+    to {
+      transform: translateX(calc(var(--strip) * -1));
+    }
+  }
+
+  /* a faint wash of the current light over everything; carries the blend between stations.
+     A plain translucent layer, not a blend mode: soft-light made the browser re-blend the moving
+     window views under it on every frame. */
+  .wash {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: rgb(var(--wash, 255 255 255) / calc(var(--wash-a, 0) * 0.5));
+  }
+
+  /* the gangway door between cars: it slides across over the cut and back again */
+  .door {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    --shut: 0;
+  }
+
+  .door-leaf {
+    position: absolute;
+    inset: 0;
+    transform: translateX(calc((1 - var(--shut)) * 102%));
+    box-shadow: -18px 0 30px rgb(0 0 0 / 0.45);
+    will-change: transform;
+  }
+
+  /* the painted door, over the glass: its keyed-out window shows the glass beneath */
+  .door-leaf::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: center / cover no-repeat;
+  }
+
+  /* the door art is fetched once the ride starts (data-armed), not with the first screen */
+  .door[data-armed] .door-leaf::after {
+    background-image: image-set(url('/art/gangway-960.avif') type('image/avif'), url('/art/gangway-960.webp') type('image/webp'));
+  }
+
+  @media (min-width: 1024px) {
+    .door[data-armed] .door-leaf::after {
+      background-image: image-set(url('/art/gangway-1920.avif') type('image/avif'), url('/art/gangway-1920.webp') type('image/webp'));
+    }
+  }
+
+  /* glass in the window: a dark gangway beyond and a sliver of reflected light */
+  .glass {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, transparent 38%, rgb(255 255 255 / 0.1) 44%, transparent 50%, transparent 56%, rgb(255 255 255 / 0.06) 60%, transparent 64%),
+      radial-gradient(60% 40% at 50% 45%, #3a4566, #121827 70%);
+  }
+
+  /* phones: one portrait window onto the same paintings, framed on her seat */
+  @media (max-width: 1023px) {
+    .track {
+      transform: translate(calc(-1 * var(--focus) * var(--P)), -50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .view-far,
+    .view-near {
+      animation: none;
+    }
+  }
+</style>

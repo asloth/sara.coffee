@@ -1,0 +1,244 @@
+---
+// Work: projects hang from the ceiling rail like the posters in a Japanese carriage, and the
+// camera walks along under them as the visitor scrolls through the car.
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order || b.data.year - a.data.year);
+const hues = ['var(--signal)', 'var(--line)', 'var(--go)', 'var(--led)'];
+---
+
+<div class="work">
+  <h2 id="work-title" class="heading">Work <span aria-hidden="true">· 作品</span></h2>
+  <ul class="posters" data-posters>
+    {
+      projects.map((p, i) => (
+        <li class="hang" style={`--sway-delay:${(i * -1.3).toFixed(1)}s;--band:${hues[i % hues.length]}`}>
+          <span class="straps" aria-hidden="true" />
+          <a class="poster" href={`/work/${p.id}/`} data-project={p.id}>
+            <span class="cover" aria-hidden="true">
+              {p.data.cover ? <img src={p.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="cover-blank">{p.data.title.slice(0, 1)}</span>}
+            </span>
+            <span class="meta">
+              <span class="year">{p.data.year}</span>
+              <span class="title">{p.data.title}</span>
+              <span class="summary">{p.data.summary}</span>
+              {p.data.placeholder && <span class="ph">placeholder</span>}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  /* the car's LED plate: readable over any painting, and above the straps */
+  .heading {
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin: 0 0 1rem;
+    padding: 0.25em 0.7em;
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--led);
+    font-family: var(--font-led);
+    background: #0d1020;
+    border: 2px solid #2b3145;
+    border-radius: 4px;
+    text-shadow: 0 0 6px rgb(255 179 71 / 0.6);
+  }
+
+  .posters {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .poster {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.9rem;
+    padding: 0.8rem;
+    background: var(--paper);
+    color: var(--paper-ink);
+    text-decoration: none;
+    border-radius: 2px;
+    border-top: 0.4rem solid var(--band);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.35);
+  }
+
+  .cover {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(135deg, rgb(0 0 0 / 0.06) 0 6px, transparent 6px 12px),
+      color-mix(in srgb, var(--band) 30%, var(--paper));
+  }
+
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cover-blank {
+    font-size: 2.2rem;
+    font-weight: 900;
+    opacity: 0.5;
+  }
+
+  .meta {
+    display: grid;
+    align-content: start;
+    gap: 0.15rem;
+  }
+
+  .year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6d6455;
+  }
+
+  .title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .summary {
+    font-size: 0.9rem;
+  }
+
+  .ph {
+    justify-self: start;
+    margin-top: 0.3rem;
+    padding: 0.05rem 0.4rem;
+    font-size: 0.7rem;
+    background: #1c1a17;
+    color: var(--paper);
+    border-radius: 2px;
+  }
+
+  .poster:hover .title,
+  .poster:focus-visible .title {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  .straps {
+    display: none;
+  }
+
+  /* wide screens: a row of posters hanging from the rail, walked past with the camera */
+  @media (min-width: 1024px) {
+    .work {
+      width: 100%;
+      overflow: visible;
+    }
+
+    /* the row spans the car; only the posters themselves take clicks */
+    .work,
+    .posters {
+      pointer-events: none;
+    }
+
+    .hang {
+      pointer-events: auto;
+    }
+
+    .heading {
+      margin-inline: auto;
+    }
+
+    .posters {
+      display: flex;
+      gap: clamp(1.5rem, 3vw, 3rem);
+      width: max-content;
+      padding: 0 calc(50vw - 8rem);
+      transform: translateX(calc(var(--walk, 0) * -1px));
+      will-change: transform;
+    }
+
+    .hang {
+      position: relative;
+      width: 16rem;
+      transform-origin: 50% -3rem;
+      animation: sway 5.5s ease-in-out infinite;
+      animation-delay: var(--sway-delay);
+    }
+
+    .straps {
+      display: block;
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: -3rem;
+      height: 3rem;
+      border-inline: 2px solid rgb(200 210 220 / 0.7);
+    }
+
+    .poster {
+      grid-template-columns: 1fr;
+    }
+
+    .cover {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-1.2deg);
+    }
+    50% {
+      transform: rotate(1.2deg);
+    }
+  }
+
+  /* phones and tablets: a strip to swipe through, so the posters stay above her */
+  @media (max-width: 1023px) {
+    .posters {
+      grid-auto-flow: column;
+      grid-auto-columns: min(78vw, 20rem);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      padding-bottom: 0.5rem;
+    }
+
+    .hang {
+      scroll-snap-align: start;
+    }
+
+    .poster {
+      height: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hang {
+      animation: none;
+    }
+  }
+
+  /* reduced motion on wide screens: no walk along the car, so all posters wrap into view */
+  @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+    .posters {
+      flex-wrap: wrap;
+      justify-content: center;
+      width: auto;
+      max-width: 90vw;
+      padding: 0;
+      row-gap: 4rem;
+      transform: none;
+    }
+  }
+</style>

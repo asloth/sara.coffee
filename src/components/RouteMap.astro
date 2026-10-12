@@ -1,0 +1,173 @@
+---
+// The train's over-door route display, doubling as the site navigation.
+import { STATIONS } from '../lib/stations';
+
+interface Props {
+  resume: string;
+}
+
+const { resume } = Astro.props;
+---
+
+<header class="routebar">
+  <nav class="route" aria-label="Route map">
+    <div class="line" aria-hidden="true"><div class="ridden"></div></div>
+    <ol>
+      {
+        STATIONS.map((s, i) => (
+          <li>
+            <a href={`#${s.id}`} data-stop={i} aria-current={i === 0 ? 'location' : undefined}>
+              <span class="dot" aria-hidden="true" />
+              <span class="label">{s.name}</span>
+              <span class="jp" aria-hidden="true">{s.jp}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+  <a class="resume" href={resume} target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+</header>
+
+<style>
+  .routebar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 clamp(0.75rem, 3vw, 2rem);
+    background: linear-gradient(rgb(10 14 26 / 0.92), rgb(10 14 26 / 0.78));
+    border-bottom: 2px solid var(--line);
+    backdrop-filter: blur(6px);
+    font-family: var(--font-led);
+  }
+
+  .route {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .line {
+    position: absolute;
+    left: 0.6rem;
+    right: 0.6rem;
+    top: 0.6rem;
+    height: 4px;
+    background: color-mix(in srgb, var(--line) 55%, #000);
+    border-radius: 2px;
+  }
+
+  /* how much of the route has been ridden, 0..1, written by the journey script */
+  .ridden {
+    height: 100%;
+    width: calc(var(--ridden, 0) * 100%);
+    background: var(--go);
+    border-radius: inherit;
+    box-shadow: 0 0 8px var(--go);
+  }
+
+  ol {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a[data-stop] {
+    display: grid;
+    justify-items: center;
+    gap: 0.1rem;
+    padding: 0 0.25rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    line-height: 1.1;
+  }
+
+  li:first-child a {
+    justify-items: start;
+  }
+
+  li:last-child a {
+    justify-items: end;
+  }
+
+  .dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid color-mix(in srgb, var(--line) 70%, #fff);
+  }
+
+  a[data-passed] .dot {
+    border-color: var(--go);
+  }
+
+  a[aria-current] {
+    color: var(--led);
+  }
+
+  a[aria-current] .dot {
+    background: var(--led);
+    border-color: var(--led);
+    box-shadow: 0 0 10px var(--led);
+  }
+
+  a[data-stop]:hover .label {
+    color: var(--paper);
+  }
+
+  .jp {
+    display: none;
+  }
+
+  .resume {
+    flex: none;
+    padding: 0.4rem 0.9rem;
+    border: 2px solid var(--led);
+    border-radius: 3px;
+    color: var(--led);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+
+  .resume:hover {
+    background: var(--led);
+    color: var(--ink);
+  }
+
+  @media (min-width: 720px) {
+    .jp {
+      display: block;
+      font-size: 0.65rem;
+      opacity: 0.7;
+    }
+  }
+
+  /* narrow phones: dots only, the current stop keeps its name */
+  @media (max-width: 479px) {
+    .label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    a[aria-current] .label {
+      position: static;
+      width: auto;
+      height: auto;
+      clip-path: none;
+      white-space: nowrap;
+    }
+  }
+</style>

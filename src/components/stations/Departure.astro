@@ -1,0 +1,133 @@
+---
+// Departure: her name on the platform's station-name board, the way a station announces itself.
+import { getEntry } from 'astro:content';
+
+const site = (await getEntry('site', 'main'))!.data;
+---
+
+<div class="departure" data-placeholder={site.placeholder || undefined}>
+  <div class="board">
+    <p class="neighbours" aria-hidden="true"><span>◀ ―</span><span>About ▶</span></p>
+    <h1 id="departure-title">{site.name}</h1>
+    <p class="role">{site.title}</p>
+  </div>
+  <div class="under">
+    <p class="tagline">{site.tagline}</p>
+    <p class="board-hint" aria-hidden="true">Scroll to board <span>↓</span></p>
+  </div>
+</div>
+
+<style>
+  .board {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding: 0.9rem 1.4rem 1rem;
+    background: #fbfbf7;
+    color: #121212;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 #fff inset, 0 10px 30px rgb(0 0 0 / 0.35);
+    /* the line colour stripe every Japanese station board carries */
+    border-bottom: 0.55rem solid var(--line);
+  }
+
+  .neighbours {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    font-size: 0.75rem;
+    color: #555;
+  }
+
+  h1 {
+    margin: 0.1rem 0 0;
+    font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.06em;
+  }
+
+  .role {
+    margin: 0.35rem 0 0;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  /* the platform's LED strip under the name board */
+  .under {
+    margin: 0.8rem auto 0;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.5rem 1rem 0.55rem;
+    text-align: center;
+    background: rgb(10 13 22 / 0.88);
+    border: 2px solid #2b3145;
+    border-radius: 4px;
+  }
+
+  .tagline {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1e6d0;
+  }
+
+  .board-hint {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-led);
+    color: var(--led);
+  }
+
+  .board-hint span {
+    display: inline-block;
+    animation: nudge 1.6s ease-in-out infinite;
+  }
+
+  @keyframes nudge {
+    50% {
+      transform: translateY(0.3rem);
+    }
+  }
+
+  /* wide screens: the board covers the painted one exactly (measured at panel x .405-.595,
+     y .173-.297), and the LED strip hangs under it */
+  @media (min-width: 1024px) {
+    .departure {
+      position: absolute;
+      left: calc(50% - var(--P) / 2 + 0.405 * var(--P));
+      top: calc(50% - var(--Ph) / 2 + 0.173 * var(--Ph));
+      width: calc(0.19 * var(--P));
+    }
+
+    .board {
+      height: calc(0.124 * var(--Ph));
+      align-content: center;
+      padding: 0.3rem 0.8rem 0.4rem;
+      border-bottom-width: calc(0.012 * var(--Ph));
+    }
+
+    h1 {
+      font-size: min(4.4rem, calc(0.034 * var(--P)));
+    }
+
+    .role {
+      font-size: min(0.85rem, calc(0.0075 * var(--P)));
+    }
+
+    .under {
+      width: max-content;
+      max-width: calc(0.3 * var(--P));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .board-hint span {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import RouteMap from '../components/RouteMap.astro';
+import Stage from '../components/Stage.astro';
+import StationSection from '../components/StationSection.astro';
+import Departure from '../components/stations/Departure.astro';
+import About from '../components/stations/About.astro';
+import Work from '../components/stations/Work.astro';
+import Experience from '../components/stations/Experience.astro';
+import Contact from '../components/stations/Contact.astro';
+import ProjectDialog from '../components/ProjectDialog.astro';
+import { STATIONS } from '../lib/stations';
+
+const site = (await getEntry('site', 'main'))!.data;
+const CONTENT = { departure: Departure, about: About, work: Work, experience: Experience, contact: Contact };
+const PLACE = { departure: 'center', about: 'right', work: 'top', experience: 'top', contact: 'right' } as const;
+---
+
+<Base title={`${site.name} — ${site.title}`} description={site.tagline}>
+  <a class="skip-link" href="#departure">Skip to content</a>
+  <RouteMap resume={site.resume} />
+  <main class="journey" data-journey>
+    <Stage />
+    <div class="stations">
+      {
+        STATIONS.map((s, i) => {
+          const Content = CONTENT[s.id];
+          return (
+            <StationSection station={s} index={i} place={PLACE[s.id]}>
+              <Content />
+            </StationSection>
+          );
+        })
+      }
+    </div>
+  </main>
+  <ProjectDialog />
+</Base>
+
+<style>
+  .journey {
+    position: relative;
+  }
+
+  /* the stations scroll over the sticky stage */
+  .stations {
+    position: relative;
+    margin-top: -100vh;
+    margin-top: -100lvh;
+    /* lies over the stage: let the pointer through to her, the cards opt back in */
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  import { startJourney } from '../scripts/journey';
+  import { startProjects } from '../scripts/projects';
+  startJourney();
+  startProjects();
+</script>

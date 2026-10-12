@@ -1,0 +1,175 @@
+---
+// Last stop: the ticket out. Contact details, real links, and the resume once more.
+import { getEntry } from 'astro:content';
+
+const site = (await getEntry('site', 'main'))!.data;
+---
+
+<div class="last-board" aria-hidden="true">
+  <p class="neighbours"><span>◀ Experience</span><span>― ▶</span></p>
+  <p class="name">終点</p>
+  <p class="romaji">LAST STOP</p>
+</div>
+
+<article class="ticket" data-placeholder={site.placeholder || undefined}>
+  <div class="stub" aria-hidden="true">
+    <span>終点</span>
+    <span class="no">No. 0001</span>
+  </div>
+  <div class="body">
+    <p class="kicker">Last stop <span aria-hidden="true">· 終点</span></p>
+    <h2 id="contact-title">Thanks for riding.</h2>
+    <p>If you'd like to work together, or just say hi:</p>
+    <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
+    <ul class="links">
+      {
+        site.links.map((l) => (
+          <li>
+            <a href={l.href} rel="me noopener" target="_blank">
+              {l.label}
+              <span class="visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={site.resume} target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+<style>
+  /* the night platform's name board, where Departure's showed her name: the journey closes */
+  .last-board {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .last-board {
+      position: absolute;
+      left: calc(50% - var(--P) / 2 + 0.405 * var(--P));
+      top: calc(50% - var(--Ph) / 2 + 0.173 * var(--Ph));
+      width: calc(0.19 * var(--P));
+      height: calc(0.124 * var(--Ph));
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      padding: 0.3rem 0.8rem 0.4rem;
+      background: #e9ecf2;
+      color: #121212;
+      border-radius: 3px;
+      border-bottom: calc(0.012 * var(--Ph)) solid var(--line);
+      box-shadow: 0 0 24px rgb(160 220 255 / 0.25);
+      /* lit by the platform's tubes */
+      filter: brightness(0.86) saturate(0.9);
+    }
+
+    .last-board p {
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .last-board .neighbours {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 0.7rem;
+      color: #555;
+    }
+
+    .last-board .name {
+      font-size: min(3.4rem, calc(0.028 * var(--P)));
+      font-weight: 900;
+      letter-spacing: 0.15em;
+    }
+
+    .last-board .romaji {
+      font-size: min(0.8rem, calc(0.007 * var(--P)));
+      font-weight: 700;
+      letter-spacing: 0.3em;
+    }
+  }
+
+  .ticket {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    background:
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.03) 0 2px, transparent 2px 6px),
+      #efe3c4;
+    color: #1d1a14;
+    border-radius: 6px;
+    box-shadow: 0 20px 44px rgb(0 0 0 / 0.5);
+    /* punched edge */
+    mask: radial-gradient(circle at 3.2rem 0, transparent 0.55rem, #000 0.6rem) top / 100% 51% no-repeat,
+      radial-gradient(circle at 3.2rem 100%, transparent 0.55rem, #000 0.6rem) bottom / 100% 51% no-repeat;
+  }
+
+  .stub {
+    display: grid;
+    align-content: space-between;
+    justify-items: center;
+    padding: 1rem 0;
+    border-right: 2px dashed rgb(0 0 0 / 0.3);
+    writing-mode: vertical-rl;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--line);
+  }
+
+  .no {
+    font-family: var(--font-led);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #6b604a;
+  }
+
+  .body {
+    padding: 1.4rem 1.6rem;
+  }
+
+  .kicker {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #7a3d1c;
+  }
+
+  h2 {
+    margin: 0.3rem 0 0.4rem;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  p {
+    margin: 0 0 0.6rem;
+  }
+
+  .mail {
+    display: inline-block;
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    font-weight: 900;
+    color: #1d1a14;
+    text-decoration-color: var(--signal);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+    word-break: break-all;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .links a {
+    font-weight: 700;
+    color: #3a2f6b;
+  }
+</style>

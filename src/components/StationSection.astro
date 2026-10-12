@@ -1,0 +1,118 @@
+---
+// One station's stretch of the ride. Its height is how long the visitor stays at the station;
+// the content holds still in the viewport (sticky) while the stage behind it plays.
+import type { Station } from '../lib/stations';
+
+interface Props {
+  station: Station;
+  index: number;
+  /** where the content sits over the painting on wide screens */
+  place?: 'right' | 'top' | 'center' | 'left';
+}
+
+const { station, index, place = 'right' } = Astro.props;
+---
+
+<section
+  id={station.id}
+  class="station"
+  data-station={index}
+  data-place={place}
+  aria-labelledby={`${station.id}-title`}
+  style={`--len:${station.length}`}
+>
+  <div class="hold">
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .station {
+    position: relative;
+    height: calc(var(--len) * 100vh);
+    /* the stations lie over the stage; only their cards take the pointer, so she stays clickable */
+    pointer-events: none;
+    /* the Work posters walk sideways past the edges; never let them widen the page */
+    overflow-x: clip;
+  }
+
+  /* wide screens: the content is pinned to the viewport for as long as it shows, so it never slides
+     off the painting before its fade; the section only supplies the scroll length */
+  .hold {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    padding: calc(var(--nav-h) + 1.5rem) clamp(1rem, 4vw, 4rem) 2rem;
+    pointer-events: none;
+  }
+
+  /* only the cards themselves take clicks: the boxes around them must not cover the passenger */
+  .content {
+    pointer-events: none;
+    /* the journey script fades a station in as the train pulls in and out as it leaves */
+    opacity: var(--show, 1);
+    visibility: var(--vis, visible);
+    /* no transform here: a station may pin a child to the painting (absolute, against .hold) */
+  }
+
+  .content > :global(*) {
+    pointer-events: auto;
+  }
+
+  @media (min-width: 1024px) {
+    [data-place='right'] .hold {
+      justify-items: end;
+      align-items: center;
+    }
+
+    [data-place='right'] .content {
+      width: min(34rem, 42vw);
+    }
+
+    [data-place='top'] .hold {
+      align-items: start;
+      justify-items: center;
+    }
+
+    [data-place='center'] .hold {
+      place-items: center;
+    }
+  }
+
+  /* phones and tablets: the content is not held; it rises from below and leaves at the top. At the
+     station itself it rests just under the route bar, so she is seen on the bench below it. */
+  @media (max-width: 1023px) {
+    .station {
+      display: grid;
+      align-items: start;
+    }
+
+    /* grid items default to their content's width: without this the Work strip grows to fit every
+       poster, so it has nothing to scroll and the page clips the posters past the edge */
+    .hold,
+    .content {
+      min-width: 0;
+    }
+
+    .hold {
+      position: static;
+      height: auto;
+      /* the station's own scroll position puts the section top (len - 1) / 2 screens above the viewport */
+      padding: calc((var(--rest-len, var(--len)) - 1) * 50vh + var(--nav-h) + 0.75rem) clamp(0.75rem, 4vw, 2rem) 1rem;
+    }
+
+    .content {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* the first screen is exactly one screen: name board up top, her on the platform below it */
+    [data-station='0'] {
+      --rest-len: 1;
+      height: 100vh;
+      height: 100svh;
+    }
+  }
+</style>

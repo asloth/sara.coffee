@@ -1,0 +1,19 @@
+{
+  "main": {
+    "name": "Sara",
+    "title": "Developer",
+    "tagline": "Placeholder tagline — one line about what you build.",
+    "bio": [
+      "Placeholder bio, paragraph one. Who you are and what you make.",
+      "Placeholder bio, paragraph two. What you care about and what you are looking for."
+    ],
+    "location": "Placeholder city",
+    "email": "hello@example.com",
+    "links": [
+      { "label": "GitHub", "href": "https://github.com/" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/" }
+    ],
+    "resume": "/resume.pdf",
+    "placeholder": true
+  }
+}

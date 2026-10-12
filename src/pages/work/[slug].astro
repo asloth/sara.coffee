@@ -1,0 +1,49 @@
+---
+// Each project's own page: shareable, and what the dialog over the train loads.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectDetail from '../../components/ProjectDetail.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: CollectionEntry<'projects'> };
+---
+
+<Base title={`${project.data.title} — Work`} description={project.data.summary}>
+  <main class="page">
+    <a class="back" href="/#work">← Back to the train</a>
+    <div class="sheet">
+      <ProjectDetail project={project} />
+    </div>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    padding: clamp(1rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem);
+    background:
+      linear-gradient(rgb(14 20 36 / 0.82), rgb(14 20 36 / 0.92)),
+      image-set(url('/art/car-afternoon-960.avif') type('image/avif'), url('/art/car-afternoon-960.webp') type('image/webp')) center / cover fixed;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-family: var(--font-led);
+    color: var(--led);
+  }
+
+  .sheet {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(1.2rem, 4vw, 2.4rem);
+    background: var(--paper);
+    border-top: 0.5rem solid var(--signal);
+    border-radius: 2px;
+    box-shadow: 0 20px 50px rgb(0 0 0 / 0.5);
+  }
+</style>

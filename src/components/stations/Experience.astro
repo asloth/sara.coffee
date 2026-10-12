@@ -1,0 +1,185 @@
+---
+// Experience: the over-door LED route board, every job and school a stop on the line.
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('experience')).sort((a, b) => a.data.start.localeCompare(b.data.start));
+const year = (d?: string) => (d ? d.slice(0, 4) : 'now');
+---
+
+<div class="board">
+  <h2 id="experience-title" class="heading">Experience <span aria-hidden="true">· 経歴</span></h2>
+  <ol class="line" tabindex="0" aria-labelledby="experience-title">
+    {
+      entries.map((e, i) => (
+        <li class:list={['stop', e.data.kind, { last: i === entries.length - 1 }]}>
+          <span class="dot" aria-hidden="true" />
+          <p class="when">
+            <time datetime={e.data.start}>{year(e.data.start)}</time>–{e.data.end ? <time datetime={e.data.end}>{year(e.data.end)}</time> : 'now'}
+          </p>
+          <h3 class="org">{e.data.org}</h3>
+          <p class="role">{e.data.role}</p>
+          <p class="summary">{e.data.summary}</p>
+          {e.data.placeholder && <p class="ph">placeholder</p>}
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .board {
+    padding: 1.2rem 1.4rem 1.4rem;
+    background: linear-gradient(#0b0d14, #141826);
+    border: 3px solid #2b3145;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px #000 inset, 0 18px 40px rgb(0 0 0 / 0.45);
+    color: #f1e6d0;
+  }
+
+  .heading {
+    margin: 0 0 1rem;
+    font-family: var(--font-led);
+    font-weight: 400;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--led);
+    text-shadow: 0 0 6px rgb(255 179 71 / 0.7);
+  }
+
+  .line {
+    position: relative;
+    display: grid;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0 0 0 1.6rem;
+    list-style: none;
+  }
+
+  /* the route line */
+  .line::before {
+    content: '';
+    position: absolute;
+    left: 0.45rem;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 4px;
+    background: var(--line);
+    border-radius: 2px;
+  }
+
+  .stop {
+    position: relative;
+  }
+
+  .dot {
+    position: absolute;
+    left: -1.6rem;
+    top: 0.25rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: #0b0d14;
+    border: 3px solid var(--go);
+  }
+
+  .school .dot {
+    border-color: var(--led);
+  }
+
+  .last .dot {
+    background: var(--go);
+    box-shadow: 0 0 10px var(--go);
+  }
+
+  .when {
+    margin: 0;
+    font-family: var(--font-led);
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--led);
+  }
+
+  .org {
+    margin: 0.1rem 0 0;
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
+
+  .role {
+    margin: 0;
+    font-weight: 700;
+    color: #c9bfae;
+  }
+
+  .summary {
+    margin: 0.3rem 0 0;
+    font-size: 0.92rem;
+    color: #d9d0c0;
+  }
+
+  .ph {
+    margin: 0.25rem 0 0;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  /* phones and tablets: swipe along the line, earliest stop first, so the board stays above her */
+  @media (max-width: 1023px) {
+    .line {
+      grid-auto-flow: column;
+      grid-auto-columns: min(70vw, 17rem);
+      gap: 1.2rem;
+      padding: 1.8rem 0 0.4rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+    }
+
+    .line::before {
+      left: 0.5rem;
+      right: 0.5rem;
+      top: 0.4rem;
+      bottom: auto;
+      width: auto;
+      height: 4px;
+    }
+
+    .stop {
+      scroll-snap-align: start;
+    }
+
+    .dot {
+      left: 0;
+      top: -1.8rem;
+    }
+  }
+
+  /* wide screens: a horizontal line across the top of the car, earliest stop on the left */
+  @media (min-width: 1024px) {
+    .board {
+      width: min(68rem, 86vw);
+    }
+
+    .line {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.8rem 0 0;
+    }
+
+    .line::before {
+      left: 0.5rem;
+      right: 0.5rem;
+      top: 0.4rem;
+      bottom: auto;
+      width: auto;
+      height: 4px;
+    }
+
+    .dot {
+      left: 0;
+      top: -1.8rem;
+    }
+  }
+</style>

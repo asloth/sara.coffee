@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+rive/*/build/
+rive/*/shots/
+.DS_Store
+
+# raw generated source art (huge); the shipped versions live in public/
+design/
+# playwright run output
+test-results/

@@ -1,0 +1,143 @@
+<Rive version="1" kind="fragment">
+<Artboard defaultStateMachineId="0:7" viewModelId="0:40" styleId="0:5" width="200" height="320" name="Persona" id="0:2">
+ <LayoutComponentStyle name="Artboard Style" id="0:5"/>
+ <Shape name="Hit" id="0:106" x="100" y="165"><Rectangle width="110" height="280"/><Fill><SolidColor colorValue="00000000"/></Fill></Shape>
+ 
+<Node name="Body" id="0:101" x="100" y="240">
+ <Node name="BodyOffset" x="-100" y="-240">
+  
+<Node name="HeadLook" id="0:102" x="100" y="104">
+ <Node name="HeadIdle" id="0:103">
+  <Node name="Offset" x="-100" y="-104">
+   <Node name="HairShift" id="0:104">
+    <Shape name="HairRim"><PointsPath isClosed="false" isClockwise="true"><CubicMirroredVertex x="126" y="30" rotation="0.5236" distance="8"/>
+<CubicMirroredVertex x="141" y="56" rotation="1.5010" distance="15"/>
+<StraightVertex x="143" y="98"/></PointsPath><Stroke thickness="2.5" cap="round" join="round"><SolidColor colorValue="FFB9CFFF"/></Stroke></Shape>
+    <Shape name="HairRimL" opacity="0.5"><PointsPath isClosed="false" isClockwise="true"><CubicMirroredVertex x="66" y="38" rotation="2.0944" distance="6"/>
+<CubicMirroredVertex x="60" y="60" rotation="1.6581" distance="10"/>
+<StraightVertex x="59" y="96"/></PointsPath><Stroke thickness="1.5" cap="round" join="round"><SolidColor colorValue="FFB9CFFF"/></Stroke></Shape>
+    <Shape name="HairStrands3"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="72" y="44"/>
+<CubicMirroredVertex x="70" y="74" rotation="1.6581" distance="12"/>
+<StraightVertex x="72" y="98"/></PointsPath><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+    <Shape name="HairStrands4"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="127" y="40"/>
+<CubicMirroredVertex x="129" y="70" rotation="1.4835" distance="12"/>
+<StraightVertex x="126" y="99"/></PointsPath><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+    <Shape name="HairStrands"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="86" y="36"/>
+<CubicMirroredVertex x="84" y="70" rotation="1.6581" distance="14"/>
+<StraightVertex x="86" y="96"/></PointsPath><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+    <Shape name="HairStrands2"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="112" y="32"/>
+<CubicMirroredVertex x="114" y="66" rotation="1.5359" distance="14"/>
+<StraightVertex x="112" y="96"/></PointsPath><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+    <Shape name="Hair"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="58" y="102" id="0:107"/>
+<CubicMirroredVertex x="60" y="50" rotation="-1.4661" distance="22"/>
+<CubicMirroredVertex x="100" y="22" rotation="0.0000" distance="27"/>
+<CubicMirroredVertex x="140" y="50" rotation="1.4661" distance="22"/>
+<StraightVertex x="143" y="100" id="0:108"/>
+<StraightVertex x="133" y="95"/>
+<StraightVertex x="124" y="103"/>
+<StraightVertex x="113" y="96"/>
+<StraightVertex x="101" y="104"/>
+<StraightVertex x="89" y="96"/>
+<StraightVertex x="78" y="103"/>
+<StraightVertex x="68" y="95"/></PointsPath><Fill><SolidColor colorValue="FF14161C"/></Fill><Stroke thickness="3.5" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+   </Node>
+   <Node name="Cheek" id="0:105" opacity="0">
+    <Shape name="GlassGlint"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="150" y="55"/>
+<StraightVertex x="152" y="66"/></PointsPath><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FFF0C98A"/></Stroke></Shape>
+    <Shape name="GlassLens"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="147" y="53"/>
+<StraightVertex x="153" y="52"/>
+<StraightVertex x="152" y="68"/>
+<StraightVertex x="148" y="69"/></PointsPath><Fill><SolidColor colorValue="FF8A5A2C"/></Fill><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+    <Shape name="GlassArm"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="118" y="64"/>
+<StraightVertex x="148" y="59"/></PointsPath><Stroke thickness="3" cap="round" join="round"><SolidColor colorValue="FF6E4422"/></Stroke></Shape>
+    <Shape name="CheekRim"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="146" y="56"/>
+<CubicMirroredVertex x="153" y="74" rotation="1.6057" distance="9"/>
+<StraightVertex x="147" y="92"/></PointsPath><Stroke thickness="2.5" cap="round" join="round"><SolidColor colorValue="FFD6E0FF"/></Stroke></Shape>
+    <Shape name="CheekSkin"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="126" y="50"/>
+<CubicMirroredVertex x="142" y="50" rotation="0.1745" distance="8"/>
+<CubicMirroredVertex x="153" y="72" rotation="1.6057" distance="11"/>
+<CubicMirroredVertex x="146" y="92" rotation="2.1817" distance="8"/>
+<StraightVertex x="132" y="102"/>
+<StraightVertex x="124" y="100"/></PointsPath><Fill><SolidColor colorValue="FF4A3F4C"/></Fill><Stroke thickness="2.5" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+   </Node>
+   <Shape name="Neck"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="93" y="92"/>
+<StraightVertex x="107" y="92"/>
+<StraightVertex x="107" y="114"/>
+<StraightVertex x="93" y="114"/></PointsPath><Fill><SolidColor colorValue="FF0B0C10"/></Fill></Shape>
+  </Node>
+ </Node>
+</Node>
+  <Shape name="ArmL"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="68" y="128"/>
+<CubicMirroredVertex x="60" y="180" rotation="1.6581" distance="20"/>
+<StraightVertex x="62" y="222"/></PointsPath><Stroke thickness="11" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+  <Shape name="ArmR"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="132" y="128"/>
+<CubicMirroredVertex x="140" y="180" rotation="1.4835" distance="20"/>
+<StraightVertex x="138" y="222"/></PointsPath><Stroke thickness="11" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+  <Shape name="CoatRimR"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="134" y="122"/>
+<CubicMirroredVertex x="142" y="180" rotation="1.4835" distance="30"/>
+<StraightVertex x="148" y="240"/></PointsPath><Stroke thickness="3.5" cap="round" join="round"><SolidColor colorValue="FFB9CFFF"/></Stroke></Shape>
+  <Shape name="CoatRimL" opacity="0.55"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="66" y="122"/>
+<CubicMirroredVertex x="58" y="180" rotation="1.6581" distance="30"/>
+<StraightVertex x="52" y="240"/></PointsPath><Stroke thickness="2" cap="round" join="round"><SolidColor colorValue="FFB9CFFF"/></Stroke></Shape>
+  <Shape name="Seam"><PointsPath isClosed="false" isClockwise="true"><StraightVertex x="100" y="116"/>
+<StraightVertex x="100" y="246"/></PointsPath><Stroke thickness="2.5" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+  <Shape name="Coat"><PointsPath isClosed="true" isClockwise="false"><StraightVertex x="88" y="106"/>
+<CubicMirroredVertex x="66" y="120" rotation="3.4907" distance="10"/>
+<CubicMirroredVertex x="58" y="180" rotation="1.6581" distance="30"/>
+<StraightVertex x="52" y="240" id="0:109"/>
+<StraightVertex x="76" y="246" id="0:110"/>
+<StraightVertex x="100" y="248" id="0:111"/>
+<StraightVertex x="124" y="246" id="0:112"/>
+<StraightVertex x="148" y="240" id="0:113"/>
+<CubicMirroredVertex x="142" y="180" rotation="-1.4835" distance="30"/>
+<CubicMirroredVertex x="134" y="120" rotation="2.7925" distance="10"/>
+<StraightVertex x="112" y="106"/></PointsPath><Fill><SolidColor colorValue="FF1A1C23"/></Fill><Stroke thickness="4" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+ </Node>
+</Node>
+ 
+<Shape name="BootL"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="80" y="290"/>
+<StraightVertex x="98" y="290"/>
+<StraightVertex x="98" y="300"/>
+<StraightVertex x="78" y="300"/></PointsPath><Fill><SolidColor colorValue="FF0B0C10"/></Fill></Shape>
+<Shape name="BootR"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="102" y="290"/>
+<StraightVertex x="120" y="290"/>
+<StraightVertex x="122" y="300"/>
+<StraightVertex x="102" y="300"/></PointsPath><Fill><SolidColor colorValue="FF0B0C10"/></Fill></Shape>
+<Shape name="LegL"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="84" y="238"/>
+<StraightVertex x="96" y="238"/>
+<StraightVertex x="97" y="292"/>
+<StraightVertex x="83" y="292"/></PointsPath><Fill><SolidColor colorValue="FF12141A"/></Fill><Stroke thickness="3" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+<Shape name="LegR"><PointsPath isClosed="true" isClockwise="true"><StraightVertex x="104" y="238"/>
+<StraightVertex x="116" y="238"/>
+<StraightVertex x="117" y="292"/>
+<StraightVertex x="103" y="292"/></PointsPath><Fill><SolidColor colorValue="FF12141A"/></Fill><Stroke thickness="3" cap="round" join="round"><SolidColor colorValue="FF0B0C10"/></Stroke></Shape>
+<Shape name="Shadow" x="100" y="300" opacity="0.5"><Ellipse width="150" height="14"/><Fill><SolidColor colorValue="FF0B0C10"/></Fill></Shape>
+ 
+<StateMachine name="Persona" id="0:7">
+ <StateMachineListenerSingle targetId="0:106" listenerTypeValue="enter" name="enter"><ListenerViewModelChange><BindablePropertyBoolean propertyValue="true"><DataBindContext sourcePathIds="0:40-0:41" propertyKey="634" direction="true"/></BindablePropertyBoolean></ListenerViewModelChange></StateMachineListenerSingle>
+ <StateMachineListenerSingle targetId="0:106" listenerTypeValue="exit" name="exit"><ListenerViewModelChange><BindablePropertyBoolean propertyValue="false"><DataBindContext sourcePathIds="0:40-0:41" propertyKey="634" direction="true"/></BindablePropertyBoolean></ListenerViewModelChange></StateMachineListenerSingle>
+ <StateMachineLayer name="Idle" id="0:120">
+  <AnyState x="300" y="-120"/><ExitState x="500" y="-120"/>
+  <EntryState><StateTransition stateToId="0:117"/></EntryState>
+  <AnimationState x="160" animationId="0:114" id="0:117"/>
+ </StateMachineLayer>
+ <StateMachineLayer name="Look" id="0:121">
+  <AnyState x="300" y="-120"/><ExitState x="500" y="-120"/>
+  <EntryState><StateTransition stateToId="0:118"/></EntryState>
+  <AnimationState x="160" animationId="0:115" id="0:118">
+   <StateTransition stateToId="0:119" duration="550" interpolationType="cubic"><CubicEaseInterpolator x1="0.3" y1="0" x2="0.2" y2="1"/><TransitionViewModelCondition opValue="equal"><TransitionPropertyViewModelComparator><BindablePropertyBoolean><DataBindContext sourcePathIds="0:40-0:41" propertyKey="634"/></BindablePropertyBoolean></TransitionPropertyViewModelComparator><TransitionValueBooleanComparator value="true"/></TransitionViewModelCondition></StateTransition>
+  </AnimationState>
+  <AnimationState x="360" animationId="0:116" id="0:119">
+   <StateTransition stateToId="0:118" duration="800" interpolationType="cubic"><CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/><TransitionViewModelCondition opValue="equal"><TransitionPropertyViewModelComparator><BindablePropertyBoolean><DataBindContext sourcePathIds="0:40-0:41" propertyKey="634"/></BindablePropertyBoolean></TransitionPropertyViewModelComparator><TransitionValueBooleanComparator value="false"/></TransitionViewModelCondition></StateTransition>
+  </AnimationState>
+ </StateMachineLayer>
+</StateMachine>
+ <LinearAnimation loopValue="loop" duration="240" name="Idle" id="0:114"><KeyedObject objectId="0:101"><KeyedProperty property="scaleY"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="120" value="1.013" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:103"><KeyedProperty property="rotation"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="90" value="0.018" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:107"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="58" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="80" value="55.8" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="58" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:108"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="143" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="110" value="145.2" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="143" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:109"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="52" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="60" value="54.5" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="52" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="76" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="100" value="78.5" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="76" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="100" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="140" value="102.5" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="100" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="124" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="180" value="126.5" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="124" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="148" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="200" value="150.5" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble><KeyFrameDouble frame="240" value="148" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation><LinearAnimation duration="1" name="Rest" id="0:115"><KeyedObject objectId="0:102"><KeyedProperty property="rotation"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:102"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="100" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:104"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:105"><KeyedProperty property="opacity"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation><LinearAnimation duration="1" name="Look" id="0:116"><KeyedObject objectId="0:102"><KeyedProperty property="rotation"><KeyFrameDouble frame="0" value="0.09" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:102"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="103" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:104"><KeyedProperty property="x"><KeyFrameDouble frame="0" value="-6" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:105"><KeyedProperty property="opacity"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+</Artboard>
+<ViewModel defaultInstanceId="0:42" name="Persona" id="0:40">
+ <ViewModelPropertyBoolean name="hover" id="0:41"/>
+ <ViewModelInstance exports="true" name="Instance" id="0:42">
+  <ViewModelInstanceBoolean propertyValue="false" viewModelPropertyId="0:41"/>
+ </ViewModelInstance>
+</ViewModel>
+</Rive>

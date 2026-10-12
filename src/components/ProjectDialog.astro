@@ -1,0 +1,83 @@
+---
+// The project dialog over the train: a poster opens its project's page here, without leaving the
+// ride. The address changes to the project's own URL, so it can be shared or reloaded.
+import '../styles/project-detail.css';
+---
+
+<dialog class="project" data-project-dialog aria-labelledby="project-title">
+  <div class="sheet">
+    <form method="dialog" class="bar">
+      <button class="close" value="close" aria-label="Close project">✕ <span aria-hidden="true">Close</span></button>
+    </form>
+    <div data-project-body></div>
+  </div>
+</dialog>
+
+<style>
+  .project {
+    width: min(48rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .project::backdrop {
+    background: rgb(8 11 20 / 0.72);
+    backdrop-filter: blur(3px);
+  }
+
+  .sheet {
+    max-height: calc(100dvh - 2rem);
+    overflow: auto;
+    padding: clamp(1.2rem, 4vw, 2.4rem);
+    padding-top: 0.6rem;
+    background: var(--paper);
+    border-top: 0.5rem solid var(--signal);
+    border-radius: 2px;
+    box-shadow: 0 24px 60px rgb(0 0 0 / 0.55);
+  }
+
+  .bar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 -0.5rem 0.4rem 0;
+    background: var(--paper);
+  }
+
+  .close {
+    padding: 0.35rem 0.7rem;
+    border: 2px solid var(--paper-ink);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--paper-ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    background: var(--paper-ink);
+    color: var(--paper);
+  }
+
+  .project[open] {
+    animation: arrive 0.22s ease-out;
+  }
+
+  @keyframes arrive {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project[open] {
+      animation: none;
+    }
+  }
+</style>
