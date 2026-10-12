@@ -39,7 +39,7 @@ test('work: a poster opens its project over the train and closing puts everythin
   const dialog = page.locator('[data-project-dialog]');
   await expect(dialog).toBeVisible();
   await expect(page).toHaveURL(new RegExp(`${href}$`));
-  await expect(dialog.locator('#project-title')).toHaveText(/Placeholder project/);
+  await expect(dialog.locator('#project-title')).not.toBeEmpty();
   await expect(dialog.locator('.facts')).toContainText('Role');
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();

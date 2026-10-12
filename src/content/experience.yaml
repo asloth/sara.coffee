@@ -1,24 +1,35 @@
 # One entry per stop on the Experience route map, any order (the site sorts by date).
-- id: placeholder-job-2
-  org: Placeholder Company B
-  role: Placeholder role
+- id: valere
+  org: Valere
+  role: Senior AI Backend Engineer
   kind: work
-  start: "2024-03"
-  summary: One or two lines about what you did there.
-  placeholder: true
-- id: placeholder-job-1
-  org: Placeholder Company A
-  role: Placeholder role
+  start: "2026-07"
+  summary: AI workflows on AWS Bedrock that screen 8,668 US companies per run, and an eval harness that picks models on measured cost and quality.
+- id: bbva-ipa
+  org: BBVA
+  role: Intelligent Process Automation Architect
   kind: work
-  start: "2022-06"
-  end: "2024-02"
-  summary: One or two lines about what you did there.
-  placeholder: true
-- id: placeholder-school
-  org: Placeholder University
-  role: Placeholder degree
+  start: "2025-04"
+  end: "2026-06"
+  summary: Designed business automations with AI agents, and the governance for sensitive data flows.
+- id: bbva-architect
+  org: BBVA
+  role: Software Architect / Data Engineer
+  kind: work
+  start: "2022-11"
+  end: "2025-03"
+  summary: Migrated 33M+ customer records from DB2 to Oracle with Spark, and built pipelines handling 9M transactions a day.
+- id: puc-genai
+  org: Pontificia Universidad Católica de Chile
+  role: Diploma in Generative AI
   kind: school
-  start: "2018-09"
-  end: "2022-06"
-  summary: One line about what you studied.
-  placeholder: true
+  start: "2025-07"
+  end: "2026"
+  summary: Generative AI, from the fundamentals to building with LLMs.
+- id: santo-toribio
+  org: Universidad Santo Toribio
+  role: Systems and Computing Engineering
+  kind: school
+  start: "2017"
+  end: "2022"
+  summary: Bachelor's degree in systems and computing engineering, Chiclayo.
