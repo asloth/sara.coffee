@@ -32,7 +32,7 @@
   | Kind | Properties |
   |---|---|
   | `web-kind` | `project` (default), `reading` or `uses` |
-  | project | `web-title`, `web-summary` (≤90 chars), `web-year`, `web-role`, `web-stack` (list), `web-links` (list of URLs, labelled from the domain: github.com → GitHub), `web-description` (optional), `web-slug` (optional) |
+  | project | `web-title`, `web-summary` (≤90 chars), `web-year`, `web-role`, `web-stack` (list), `web-links` (list of URLs, labelled from the domain: github.com → GitHub), `web-description` (optional list, one item per paragraph: Obsidian text properties are single-line), `web-slug` (optional, keeps the `/work/<slug>` URL stable), `web-order` (optional number) |
   | reading | `web-title`, `web-author`, `web-note` (optional), `web-isbn` (optional) |
   | uses | each list property `web-<section>` becomes a section, and each item is `Name — how I use it`, with an optional trailing URL |
 
