@@ -3,6 +3,7 @@
 import { getEntry } from 'astro:content';
 
 const site = (await getEntry('site', 'main'))!.data;
+const reading = site.reading;
 ---
 
 <article class="poster" data-placeholder={site.placeholder || undefined}>
@@ -23,6 +24,22 @@ const site = (await getEntry('site', 'main'))!.data;
     )
   }
   {site.location && <p class="where">Based in {site.location}</p>}
+  {
+    reading && (
+      <p class="reading">
+        <span class="book" aria-hidden="true" />
+        <span>
+          Now reading:{' '}
+          {reading.href ? (
+            <a href={reading.href} rel="noopener"><em>{reading.title}</em></a>
+          ) : (
+            <em>{reading.title}</em>
+          )}
+          , {reading.author}
+        </span>
+      </p>
+    )
+  }
 </article>
 
 <script>
@@ -92,6 +109,28 @@ const site = (await getEntry('site', 'main'))!.data;
     :global(.js) .more:has(+ [aria-expanded='false']) {
       display: none;
     }
+  }
+
+  .reading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.35rem 0 0;
+    font-size: 0.9rem;
+    color: #5c5548;
+  }
+
+  .reading a {
+    color: inherit;
+  }
+
+  .book {
+    flex: none;
+    width: 0.7rem;
+    height: 0.95rem;
+    background: #b8643a;
+    border-radius: 1px 2px 2px 1px;
+    box-shadow: inset 0.15rem 0 0 #8a4b25, inset -0.1rem 0 0 rgb(255 255 255 / 0.35);
   }
 
   .where {

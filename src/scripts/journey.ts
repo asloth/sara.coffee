@@ -74,6 +74,7 @@ export function startJourney(): void {
   // A station is "arrived" when its section's middle sits in the middle of the viewport.
   let mids: number[] = [];
   let walkMax = 0;
+  let walkStart = 0;
   // the painting's size as CSS actually lays it out (--P x --Ph), and the stage's. Not innerHeight:
   // on phones that grows and shrinks as the browser bars hide, while 100vh holds still, and she
   // would change size against the bench she sits on.
@@ -85,7 +86,14 @@ export function startJourney(): void {
   const measure = () => {
     const vh = innerHeight;
     mids = sections.map((s) => s.offsetTop + (s.offsetHeight - vh) / 2);
-    walkMax = posters ? Math.max(0, posters.scrollWidth - innerWidth) : 0;
+    // the row of posters: at the station (pan 0.5) the first ones hang at the left of the view,
+    // and the walk to pan 1 brings the last one in, so every poster is seen on the way through
+    if (posters) {
+      const m = Math.min(96, innerWidth * 0.06);
+      const row = posters.scrollWidth;
+      walkMax = 2 * Math.max(0, row + 2 * m - innerWidth);
+      walkStart = walkMax ? m + walkMax / 2 : (innerWidth - row) / 2;
+    }
     P = panel.offsetWidth;
     Ph = panel.offsetHeight;
     stageW = stage.clientWidth;
@@ -276,7 +284,7 @@ export function startJourney(): void {
     // reduced motion: no walk, the camera stands mid-car (where her seat and the wrapped posters are)
     const pan = !desktop ? 0 : reduced ? (now === WORK ? 0.5 : 0) : smooth(WORK - 0.4, WORK + 0.4, x);
     scenes[WORK]?.style.setProperty('--pan', pan.toFixed(4));
-    posters?.style.setProperty('--walk', (pan * walkMax).toFixed(1));
+    posters?.style.setProperty('--walk', (pan * walkMax - walkStart).toFixed(1));
 
     // the passenger, seated on the bench of whichever scene is showing
     const seat = STATIONS[shown]!.seat;

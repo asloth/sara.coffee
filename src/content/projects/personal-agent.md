@@ -6,7 +6,7 @@ role: Setup, operations and skills
 stack: [Hermes Agent, Claude Code, Tailscale, Syncthing, Linux]
 links:
   - { label: Hermes Agent, href: "https://github.com/NousResearch/hermes-agent" }
-order: 2
+order: 4
 ---
 
 I run [Hermes Agent](https://github.com/NousResearch/hermes-agent) on my own VPS as a personal assistant I talk to from Telegram, the desktop app or my phone.

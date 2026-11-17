@@ -8,6 +8,7 @@
       "Now I work remotely and finally have time to build my own things in the open. I love learning and working with AI, from the fundamentals to agents, and I believe it should make people's lives better. Open source and Linux are where I feel at home."
     ],
     "location": "Lima",
+    "reading": { "title": "Code", "author": "Charles Petzold" },
     "email": "hello@example.com",
     "links": [
       {

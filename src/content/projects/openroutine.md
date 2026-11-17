@@ -6,7 +6,7 @@ role: Creator, design and development
 stack: [Flutter, Dart, Google Drive API, JSON Schema]
 links:
   - { label: GitHub, href: "https://github.com/asloth/openroutine" }
-order: 1
+order: 2
 ---
 
 An open-source routine and visual-timer app for iOS and Android. There is no backend: routines are plain JSON files in a folder of your own Google Drive, so the app is only a client and costs nothing to run.

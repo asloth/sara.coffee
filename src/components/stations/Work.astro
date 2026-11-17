@@ -161,7 +161,7 @@ const hues = ['var(--signal)', 'var(--line)', 'var(--go)', 'var(--led)'];
       display: flex;
       gap: clamp(1.5rem, 3vw, 3rem);
       width: max-content;
-      padding: 0 calc(50vw - 8rem);
+      padding: 0;
       transform: translateX(calc(var(--walk, 0) * -1px));
       will-change: transform;
     }
@@ -229,16 +229,23 @@ const hues = ['var(--signal)', 'var(--line)', 'var(--go)', 'var(--led)'];
     }
   }
 
-  /* reduced motion on wide screens: no walk along the car, so all posters wrap into view */
+  /* wide screens without motion: no camera walk, the row is a strip to scroll sideways */
   @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
     .posters {
-      flex-wrap: wrap;
-      justify-content: center;
       width: auto;
-      max-width: 90vw;
-      padding: 0;
-      row-gap: 4rem;
+      max-width: 100vw;
+      padding: 3rem 6vw 0.75rem;
+      margin-top: -3rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
       transform: none;
+      pointer-events: auto;
+    }
+
+    .hang {
+      flex: none;
+      scroll-snap-align: start;
+      scroll-margin-inline: 6vw;
     }
   }
 </style>
