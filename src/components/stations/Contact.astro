@@ -32,9 +32,11 @@ const site = (await getEntry('site', 'main'))!.data;
           </li>
         ))
       }
-      <li>
-        <a href={site.resume} target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
-      </li>
+      {site.resume && (
+        <li>
+          <a href={site.resume} target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+        </li>
+      )}
     </ul>
   </div>
 </article>

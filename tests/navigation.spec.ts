@@ -49,27 +49,12 @@ test('the address follows the station while scrolling', async ({ page }) => {
   await expect(page).toHaveURL(/#departure$/);
 });
 
-test('resume is one tap away at every station', async ({ page }) => {
-  await page.goto('/');
-  await page.waitForLoadState('networkidle');
-  const resume = page.locator('.routebar .resume');
-  for (let i = 0; i <= 4; i++) {
-    await rideTo(page, i);
-    await expect(resume).toBeInViewport({ ratio: 1 });
-  }
-  await expect(resume).toHaveAttribute('href', '/resume.pdf');
-  await expect(resume).toHaveAttribute('target', '_blank');
-  const res = await page.request.get('/resume.pdf');
-  expect(res.ok()).toBe(true);
-  expect(res.headers()['content-type']).toContain('pdf');
-});
-
-test('keyboard order: skip link, the five stops, then resume', async ({ page }, info) => {
+test('keyboard order: skip link, then the five stops', async ({ page }, info) => {
   test.skip(info.project.name === 'phone', 'touch device');
   await page.goto('/');
   await page.waitForLoadState('networkidle');
   const order: string[] = [];
-  for (let k = 0; k < 7; k++) {
+  for (let k = 0; k < 6; k++) {
     await page.keyboard.press('Tab');
     order.push(
       await page.evaluate(() => {
@@ -83,6 +68,5 @@ test('keyboard order: skip link, the five stops, then resume', async ({ page }, 
   expect(order[0]).toBe('Skip to content');
   // each stop's text is its name followed by the decorative kanji (hidden from assistive tech)
   ['Departure', 'About', 'Work', 'Experience', 'Last stop'].forEach((name, k) => expect(order[k + 1]).toMatch(new RegExp(`^${name}`)));
-  expect(order[6]).toMatch(/^Resume/);
   expect(order.filter((t) => t.includes('NO FOCUS RING'))).toEqual([]);
 });

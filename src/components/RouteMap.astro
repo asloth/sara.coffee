@@ -2,11 +2,6 @@
 // The train's over-door route display, doubling as the site navigation.
 import { STATIONS } from '../lib/stations';
 
-interface Props {
-  resume: string;
-}
-
-const { resume } = Astro.props;
 ---
 
 <header class="routebar">
@@ -26,7 +21,6 @@ const { resume } = Astro.props;
       }
     </ol>
   </nav>
-  <a class="resume" href={resume} target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
 </header>
 
 <style>
@@ -126,22 +120,6 @@ const { resume } = Astro.props;
 
   .jp {
     display: none;
-  }
-
-  .resume {
-    flex: none;
-    padding: 0.4rem 0.9rem;
-    border: 2px solid var(--led);
-    border-radius: 3px;
-    color: var(--led);
-    text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-  }
-
-  .resume:hover {
-    background: var(--led);
-    color: var(--ink);
   }
 
   @media (min-width: 720px) {

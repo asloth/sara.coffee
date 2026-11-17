@@ -9,7 +9,7 @@
     ],
     "location": "Lima",
     "reading": { "title": "Code", "author": "Charles Petzold" },
-    "email": "hello@example.com",
+    "email": "hello@sara.coffee",
     "links": [
       {
         "label": "GitHub",
@@ -20,7 +20,6 @@
         "href": "https://www.linkedin.com/"
       }
     ],
-    "resume": "/resume.pdf",
     "placeholder": true
   }
 }

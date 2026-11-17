@@ -17,7 +17,7 @@ const site = defineCollection({
     reading: z.object({ title: z.string(), author: z.string(), href: z.string().optional() }).optional(),
     email: z.email(),
     links: z.array(link),
-    resume: z.string().startsWith('/'),
+    resume: z.string().startsWith('/').optional(),
     placeholder: z.boolean().default(false),
   }),
 });
