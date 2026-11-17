@@ -2,7 +2,8 @@
 // Experience: the over-door LED route board, every job and school a stop on the line.
 import { getCollection } from 'astro:content';
 
-const entries = (await getCollection('experience')).sort((a, b) => a.data.start.localeCompare(b.data.start));
+// newest first: the route starts where she is now and rides back in time
+const entries = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
 const year = (d?: string) => (d ? d.slice(0, 4) : 'now');
 ---
 
@@ -11,7 +12,7 @@ const year = (d?: string) => (d ? d.slice(0, 4) : 'now');
   <ol class="line" tabindex="0" aria-labelledby="experience-title">
     {
       entries.map((e, i) => (
-        <li class:list={['stop', e.data.kind, { last: i === entries.length - 1 }]}>
+        <li class:list={['stop', e.data.kind, { now: i === 0 }]}>
           <span class="dot" aria-hidden="true" />
           <p class="when">
             <span class="dates">
@@ -96,7 +97,7 @@ const year = (d?: string) => (d ? d.slice(0, 4) : 'now');
     border-color: #5fd1c4;
   }
 
-  .last .dot {
+  .now .dot {
     box-shadow: 0 0 10px var(--go);
   }
 

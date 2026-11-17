@@ -68,11 +68,11 @@ test('work: every project has its own page', async ({ page }) => {
   }
 });
 
-test('experience: stops are in date order', async ({ page }) => {
+test('experience: stops run newest first', async ({ page }) => {
   await rideTo(page, 3);
   const starts = await page.locator('#experience .stop time:first-of-type').evaluateAll((ts) => ts.map((t) => t.getAttribute('datetime')!));
   expect(starts.length).toBeGreaterThan(0);
-  expect([...starts].sort()).toEqual(starts);
+  expect([...starts].sort().reverse()).toEqual(starts);
 });
 
 test('last stop: every contact link goes somewhere real', async ({ page }) => {
