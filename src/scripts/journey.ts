@@ -46,6 +46,11 @@ function litMatrix(L: Light): string {
   return [...rows.flat(), 0, 0, 0, 1, 0].map((v) => v.toFixed(4)).join(' ');
 }
 
+// Firefox paints an SVG filter over the Rive canvas with red and blue swapped (blue skin), even
+// for the identity matrix. There she gets the CSS saturate + brightness grade; the per-channel
+// gain is dropped and the stage wash still carries the colour of the light.
+const FIREFOX_SVG_FILTER_BUG = typeof CSS !== 'undefined' && CSS.supports('-moz-appearance', 'none');
+
 export function startJourney(): void {
   const root = document.documentElement;
   const stage = document.querySelector<HTMLElement>('[data-stage]')!;
@@ -288,7 +293,11 @@ export function startJourney(): void {
 
     // light: her grade and the wash over the stage blend continuously between stations
     const L = lightAt(x);
-    litFilter?.setAttribute('values', litMatrix(L));
+    if (FIREFOX_SVG_FILTER_BUG) {
+      herButton.style.filter = `saturate(${L.saturate.toFixed(3)}) brightness(${L.brightness.toFixed(3)})`;
+    } else {
+      litFilter?.setAttribute('values', litMatrix(L));
+    }
     stage.style.setProperty('--wash', L.wash.map((c) => Math.round(c)).join(' '));
     stage.style.setProperty('--wash-a', L.washAlpha.toFixed(3));
 

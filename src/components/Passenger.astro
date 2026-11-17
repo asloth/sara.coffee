@@ -49,6 +49,12 @@
     filter: url(#lit);
     -webkit-tap-highlight-color: transparent;
   }
+  /* Firefox swaps red and blue under the SVG filter; the journey script grades her with CSS there */
+  @supports (-moz-appearance: none) {
+    .passenger {
+      filter: none;
+    }
+  }
 
   /* her clickable area is her body, not the empty corners of the artboard */
   .passenger:focus-visible {
