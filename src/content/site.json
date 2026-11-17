@@ -13,13 +13,13 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/"
+        "href": "https://github.com/asloth"
       },
       {
         "label": "LinkedIn",
-        "href": "https://www.linkedin.com/"
+        "href": "https://www.linkedin.com/in/sbenelramirez"
       }
     ],
-    "placeholder": true
+    "placeholder": false
   }
 }
