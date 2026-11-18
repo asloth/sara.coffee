@@ -1,10 +1,10 @@
 {
   "main": {
     "name": "Sara",
-    "title": "Senior Backend & Data Engineer",
+    "title": "AI & Data Engineer",
     "tagline": "Always learning, mostly about data, AI and the systems in between.",
     "bio": [
-      "I'm a senior backend and data engineer. I spent three years building inside a bank, where data has to be right and systems can't go down. My favourite work is shaping data for machine learning.",
+      "I'm an AI and data engineer. I spent three years building inside a bank, where data has to be right and systems can't go down. My favourite work is shaping data for machine learning.",
       "Now I work remotely and finally have time to build my own things in the open. I love learning and working with AI, from the fundamentals to agents, and I believe it should make people's lives better. Open source and Linux are where I feel at home."
     ],
     "location": "Lima",
