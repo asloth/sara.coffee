@@ -6,8 +6,10 @@
   start: "2026-07"
   summary: Owns the product end to end and leads the meetings with US clients.
   highlights:
-    - AI workflows on AWS Bedrock, 8,668 companies screened per run.
-    - RAG over company data, and an eval harness that picks models on measured cost and quality.
+    - Batch inference on Bedrock, 8,668 US-listed companies per run.
+    - RAG over company data, matched against the client's investor records.
+    - Evals with DeepEval, picking the model on measured cost and quality.
+    - Serverless on AWS with Terraform, from pipeline to frontend.
 - id: bbva-ipa
   org: BBVA
   role: Intelligent Process Automation Architect
@@ -28,7 +30,7 @@
   kind: school
   start: "2025-07"
   end: "2026"
-  summary: Generative AI, from the fundamentals to building with LLMs.
+  summary: "Generative AI, from the fundamentals to an agent harness: planner, parallel workers and a synthesizer, traced in LangSmith."
 - id: santo-toribio
   org: Universidad Santo Toribio
   role: Systems and Computing Engineering

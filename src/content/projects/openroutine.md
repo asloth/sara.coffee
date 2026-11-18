@@ -6,6 +6,7 @@ role: Creator, design and development
 stack: [Flutter, Dart, Google Drive API, JSON Schema]
 links:
   - { label: GitHub, href: "https://github.com/asloth/openroutine" }
+  - { label: Play Store, href: "https://play.google.com/store/apps/details?id=app.openroutine.mobile" }
 order: 2
 ---
 
@@ -13,4 +14,4 @@ An open-source routine and visual-timer app for iOS and Android. There is no bac
 
 That also makes it agent-friendly. The JSON schema is open and versioned, so any AI agent with access to your Drive (Claude, Codex or others) can read your routines and completion history, spot the steps you keep skipping, and propose or apply changes you confirm.
 
-It already has the routine timer, import and export, and optional Drive sync, and I'm polishing it for a first store release. I build it in the open.
+It already has the routine timer, import and export, and optional Drive sync. The Android release is live on Google Play, and I build it in the open.
