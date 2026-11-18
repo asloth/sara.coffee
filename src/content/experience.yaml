@@ -16,7 +16,11 @@
   kind: work
   start: "2025-04"
   end: "2026-06"
-  summary: Designed business automations with AI agents, and the governance for sensitive data flows.
+  summary: "Shaped the product direction as a data architect, then led and built the agents that shipped it."
+  highlights:
+    - "Led the contractual-template migration agent: harness, planning and the first MVP."
+    - Built an agent that answers customer tickets on platform configuration.
+    - Led production incidents in data and backend end to end.
 - id: bbva-architect
   org: BBVA
   role: Software Architect / Data Engineer
