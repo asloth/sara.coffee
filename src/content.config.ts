@@ -46,6 +46,8 @@ const experience = defineCollection({
     start: z.string().regex(/^\d{4}(-\d{2})?$/),
     end: z.string().regex(/^\d{4}(-\d{2})?$/).optional(),
     summary: z.string(),
+    // the current or most recent stop can carry a few concrete lines under its summary
+    highlights: z.array(z.string()).default([]),
     placeholder: z.boolean().default(false),
   }),
 });

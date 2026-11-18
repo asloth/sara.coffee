@@ -23,6 +23,13 @@ const year = (d?: string) => (d ? d.slice(0, 4) : 'now');
           <h3 class="org">{e.data.org}</h3>
           <p class="role">{e.data.role}</p>
           <p class="summary">{e.data.summary}</p>
+          {e.data.highlights.length > 0 && (
+            <ul class="highlights">
+              {e.data.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          )}
           {e.data.placeholder && <p class="ph">placeholder</p>}
         </li>
       ))
@@ -144,6 +151,34 @@ const year = (d?: string) => (d ? d.slice(0, 4) : 'now');
     margin: 0.3rem 0 0;
     font-size: 0.92rem;
     color: #d9d0c0;
+  }
+
+  /* the current stop's concrete lines: a square bullet in the board's amber */
+  .highlights {
+    display: grid;
+    gap: 0.3rem;
+    margin: 0.4rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    color: #d9d0c0;
+  }
+
+  .highlights li {
+    position: relative;
+    padding-left: 0.85rem;
+  }
+
+  .highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0.1rem;
+    top: 0.52em;
+    width: 0.3rem;
+    height: 0.3rem;
+    background: var(--led);
+    opacity: 0.75;
   }
 
   .ph {

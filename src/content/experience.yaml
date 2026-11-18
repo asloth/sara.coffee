@@ -4,7 +4,10 @@
   role: Senior AI Backend Engineer
   kind: work
   start: "2026-07"
-  summary: AI workflows on AWS Bedrock that screen 8,668 US companies per run, and an eval harness that picks models on measured cost and quality.
+  summary: Owns the product end to end and leads the meetings with US clients.
+  highlights:
+    - AI workflows on AWS Bedrock, 8,668 companies screened per run.
+    - RAG over company data, and an eval harness that picks models on measured cost and quality.
 - id: bbva-ipa
   org: BBVA
   role: Intelligent Process Automation Architect
