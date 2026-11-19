@@ -12,7 +12,7 @@
     - Serverless on AWS with Terraform, from pipeline to frontend.
 - id: bbva-ipa
   org: BBVA
-  role: Intelligent Process Automation Architect (AI agents)
+  role: Intelligent Process Automation Architect
   kind: work
   start: "2025-04"
   end: "2026-06"

@@ -4,8 +4,8 @@
     "title": "AI & Data Engineer",
     "tagline": "Always learning, mostly about data, AI and the systems in between.",
     "bio": [
-      "I'm an AI and data engineer. I spent three years inside a bank, where data has to be right and systems can't go down. In my last year there I led two agents into production: one migrates contractual document templates off a legacy stack, the other answers configuration tickets. My favourite work is shaping data for machine learning.",
-      "Now I work remotely, building AI workflows on AWS Bedrock for a US client, and I finally have time to build my own things in the open. I believe AI should make people's lives better. Open source and Linux are where I feel at home."
+      "I'm an AI and data engineer. I spent four years building inside a bank, where data has to be right and systems can't go down. My favourite work is shaping data for machine learning.",
+      "Now I work remotely and finally have time to build my own things in the open. I love learning and working with AI, from the fundamentals to agents, and I believe it should make people's lives better. Open source and Linux are where I feel at home."
     ],
     "location": "Lima",
     "reading": { "title": "Code", "author": "Charles Petzold" },
