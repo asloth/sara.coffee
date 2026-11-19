@@ -5,7 +5,7 @@ import '../styles/project-detail.css';
 ---
 
 <dialog class="project" data-project-dialog aria-labelledby="project-title">
-  <div class="sheet">
+  <div class="sheet" data-lenis-prevent>
     <form method="dialog" class="bar">
       <button class="close" value="close" aria-label="Close project">✕ <span aria-hidden="true">Close</span></button>
     </form>
@@ -31,6 +31,7 @@ import '../styles/project-detail.css';
   .sheet {
     max-height: calc(100dvh - 2rem);
     overflow: auto;
+    overscroll-behavior: contain;
     padding: clamp(1.2rem, 4vw, 2.4rem);
     padding-top: 0.6rem;
     background: var(--paper);

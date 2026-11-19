@@ -35,6 +35,7 @@ export function startProjects(): void {
     returnUrl = location.pathname + location.search + location.hash;
     if (push) history.pushState({ project: href }, '', href);
     dialog.showModal();
+    window.dispatchEvent(new Event('ride:pause'));
   };
 
   const finishClose = () => {
@@ -62,6 +63,7 @@ export function startProjects(): void {
       history.back();
     } else if (returnUrl && location.pathname !== '/') history.replaceState(null, '', returnUrl);
     finishClose();
+    window.dispatchEvent(new Event('ride:resume'));
   });
 
   // Back while the dialog is open closes it; Forward to a project reopens it

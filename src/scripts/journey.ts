@@ -111,14 +111,27 @@ export function startJourney(): void {
 
   // ------------------------------------------------------------------ smooth wheel (desktop only)
   let lenis: Lenis | null = null;
+  // a project open over the train owns the wheel: the sheet scrolls, the ride waits
+  let wheelPaused = false;
   const setupLenis = () => {
     const want = desktop && !reduced && matchMedia('(pointer: fine)').matches;
-    if (want && !lenis) lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 0.9 });
+    if (want && !lenis) {
+      lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 0.9 });
+      if (wheelPaused) lenis.stop();
+    }
     if (!want && lenis) {
       lenis.destroy();
       lenis = null;
     }
   };
+  window.addEventListener('ride:pause', () => {
+    wheelPaused = true;
+    lenis?.stop();
+  });
+  window.addEventListener('ride:resume', () => {
+    wheelPaused = false;
+    lenis?.start();
+  });
 
   // ------------------------------------------------------------------ deep links and the route map
   /** Ride to station i; resolves once the train is in. */

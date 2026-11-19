@@ -2,6 +2,7 @@
 title: OpenRoutine
 summary: A local-first routine app. Your routines live in your own Drive, readable by any agent.
 year: 2026
+cover: /work/openroutine.webp
 role: Creator, design and development
 stack: [Flutter, Dart, Google Drive API, JSON Schema]
 links:

@@ -2,6 +2,7 @@
 title: My personal agent
 summary: A self-hosted Hermes Agent on my own server, reached from Telegram and my phone.
 year: 2026
+cover: /work/personal-agent.webp
 role: Setup, operations and skills
 stack: [Hermes Agent, Claude Code, Tailscale, Syncthing, Linux]
 links:

@@ -2,6 +2,7 @@
 title: sara.coffee
 summary: This site, an anime train ride from morning to night, one station per section.
 year: 2026
+cover: /work/sara-coffee.webp
 role: Concept, art direction and development
 stack: [Astro, TypeScript, Rive, GSAP, Playwright]
 links:

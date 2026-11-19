@@ -68,6 +68,26 @@ test('work: every project has its own page', async ({ page }) => {
   }
 });
 
+test('work: a project sheet scrolls on its own and the ride behind holds still', async ({ page }) => {
+  // a short window so the sheet has somewhere to go
+  await page.setViewportSize({ width: 1280, height: 520 });
+  await rideTo(page, 2);
+  await page.locator('a[data-project][href="/work/personal-agent/"]').click({ force: true });
+  const sheet = page.locator('[data-project-dialog] .sheet');
+  await expect(sheet).toBeVisible();
+  const rideY = await page.evaluate(() => scrollY);
+  const box = (await sheet.boundingBox())!;
+  const read = () => sheet.evaluate((el) => ({ top: el.scrollTop, over: el.scrollHeight - el.clientHeight }));
+  const before = await read();
+  expect(before.over).toBeGreaterThan(40);
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  for (let i = 0; i < 4; i++) await page.mouse.wheel(0, 400);
+  await page.waitForTimeout(500);
+  const after = await read();
+  expect(after.top).toBeGreaterThan(before.top);
+  expect(Math.abs((await page.evaluate(() => scrollY)) - rideY)).toBeLessThan(2);
+});
+
 test('experience: stops run newest first', async ({ page }) => {
   await rideTo(page, 3);
   const starts = await page.locator('#experience .stop time:first-of-type').evaluateAll((ts) => ts.map((t) => t.getAttribute('datetime')!));

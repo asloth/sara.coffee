@@ -2,6 +2,7 @@
 title: CV Generator AI
 summary: A Spanish CLI that interviews you and writes a Markdown CV, with cost tracking.
 year: 2026
+cover: /work/cv-generator.webp
 role: Creator, design and development
 stack: [Python, OpenAI API, Pydantic, uv]
 links:
