@@ -4,6 +4,7 @@ summary: An MCP server that lets several AI agents use my Linux desktop while I 
 year: 2026
 role: Creator, design and development
 cover: /work/ccdesk.webp
+video: /work/ccdesk-agents.mp4
 stack: [Python, MCP, AT-SPI, X11, Xvfb]
 links:
   - { label: GitHub, href: "https://github.com/asloth/ccdesk" }

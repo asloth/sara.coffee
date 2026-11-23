@@ -102,3 +102,10 @@ test('last stop: every contact link goes somewhere real', async ({ page }) => {
   for (const h of links) expect(h).toMatch(/^(mailto:\S+@\S+|https:\/\/\S+|\/\S+)/);
   await expect(page.locator('#contact .mail')).toBeInViewport();
 });
+
+test('work: the ccdesk sheet plays its screen recording', async ({ page }) => {
+  await page.goto('/work/ccdesk/');
+  const video = page.locator('video[data-loop-video]');
+  await expect(video).toBeVisible();
+  await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime), { timeout: 10_000 }).toBeGreaterThan(0.5);
+});

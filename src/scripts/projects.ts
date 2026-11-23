@@ -2,6 +2,16 @@
 // page is fetched and its article lifted in; the address becomes the project's own URL, and closing
 // (button, Escape, backdrop, or Back) returns the visitor to the same spot with focus on the poster.
 
+// Project loops play muted on their own, unless the visitor asked for less motion: then the
+// poster frame stays and the controls are there to start it.
+export function playLoops(root: ParentNode): void {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.querySelectorAll<HTMLVideoElement>('video[data-loop-video]').forEach((v) => {
+    v.muted = true;
+    void v.play().catch(() => {});
+  });
+}
+
 export function startProjects(): void {
   const dialog = document.querySelector<HTMLDialogElement>('[data-project-dialog]');
   const body = dialog?.querySelector<HTMLElement>('[data-project-body]');
@@ -35,6 +45,7 @@ export function startProjects(): void {
     returnUrl = location.pathname + location.search + location.hash;
     if (push) history.pushState({ project: href }, '', href);
     dialog.showModal();
+    playLoops(body);
     window.dispatchEvent(new Event('ride:pause'));
   };
 

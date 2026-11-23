@@ -21,6 +21,11 @@ const { project } = Astro.props as { project: CollectionEntry<'projects'> };
   </main>
 </Base>
 
+<script>
+  import { playLoops } from '../../scripts/projects';
+  playLoops(document);
+</script>
+
 <style>
   .page {
     min-height: 100vh;

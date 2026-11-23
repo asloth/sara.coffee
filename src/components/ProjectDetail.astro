@@ -19,7 +19,16 @@ const d = project.data;
     <p class="summary">{d.summary}</p>
     {d.placeholder && <p class="ph">Placeholder project: replace in src/content/projects/{project.id}.md</p>}
   </header>
-  {d.cover && <img class="cover" src={d.cover} alt="" />}
+  {
+    d.video ? (
+      <video class="cover" data-loop-video poster={d.cover} muted loop playsinline controls preload="metadata" aria-label={`Screen recording of ${d.title}`}>
+        <source src={d.video.replace(/\.mp4$/, '.webm')} type="video/webm" />
+        <source src={d.video} type="video/mp4" />
+      </video>
+    ) : (
+      d.cover && <img class="cover" src={d.cover} alt="" />
+    )
+  }
   <dl class="facts">
     <div><dt>Role</dt><dd>{d.role}</dd></div>
     <div>

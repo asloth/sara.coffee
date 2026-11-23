@@ -31,6 +31,8 @@ const projects = defineCollection({
     role: z.string(),
     stack: z.array(z.string()).min(1),
     cover: z.string().optional(),
+    // a short muted loop shown in the project sheet in place of the cover
+    video: z.string().startsWith('/').optional(),
     links: z.array(link).default([]),
     order: z.number().default(0),
     placeholder: z.boolean().default(false),
