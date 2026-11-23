@@ -27,7 +27,7 @@
   kind: work
   start: "2022-11"
   end: "2025-03"
-  summary: Migrated 33M+ customer records from DB2 to Oracle with Spark, and built pipelines handling 9M transactions a day.
+  summary: Designed backend systems at bank scale, from migrating 33M+ customer records off DB2 to pipelines for 9M transactions a day.
 - id: puc-genai
   org: Pontificia Universidad Católica de Chile
   role: Diploma in Generative AI

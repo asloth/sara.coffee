@@ -1,14 +1,17 @@
 {
   "main": {
     "name": "Sara",
-    "title": "AI & Data Engineer",
-    "tagline": "Always learning, mostly about data, AI and the systems in between.",
+    "title": "AI Engineer",
+    "tagline": "I build AI agents and the tools they need to do real work.",
     "bio": [
-      "I'm an AI and data engineer. I spent four years building inside a bank, where data has to be right and systems can't go down. My favourite work is shaping data for machine learning.",
-      "Now I work remotely and finally have time to build my own things in the open. I love learning and working with AI, from the fundamentals to agents, and I believe it should make people's lives better. Open source and Linux are where I feel at home."
+      "I'm an AI engineer. I build agents and everything around them: the harness, the evals, and the infrastructure they run on. I spent four years at BBVA, where systems can't go down, and in my last year there I led the agents the bank shipped.",
+      "Now I work remotely at Valere and build open-source tools for agents, like ccdesk. Linux and open source are where I feel at home."
     ],
     "location": "Lima",
-    "reading": { "title": "Code", "author": "Charles Petzold" },
+    "reading": {
+      "title": "Code",
+      "author": "Charles Petzold"
+    },
     "email": "hello@sara.coffee",
     "links": [
       {
