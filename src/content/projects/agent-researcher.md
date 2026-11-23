@@ -4,9 +4,11 @@ summary: A LangGraph research agent that plans, searches in parallel and answers
 year: 2026
 role: Creator, design and development
 cover: /work/agent-researcher.webp
+video: /work/agent-researcher.mp4
 stack: [Python, LangGraph, FastAPI, React, LanceDB, MCP]
 links:
   - { label: GitHub, href: "https://github.com/asloth/agent-researcher" }
+  - { label: Full demo on LinkedIn, href: "https://www.linkedin.com/feed/update/urn:li:activity:7454862022942584832/" }
 order: 3
 ---
 
