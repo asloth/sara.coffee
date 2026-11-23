@@ -16,7 +16,7 @@
   kind: work
   start: "2025-04"
   end: "2026-06"
-  summary: "Shaped the product direction as a data architect, then led and built the agents that shipped it."
+  summary: "Shaped the product direction as a data architect, then built internal agents that sped up the team's work."
   highlights:
     - "Led the contractual-template migration agent: harness, planning and the first MVP."
     - Built an agent that answers customer tickets on platform configuration.
